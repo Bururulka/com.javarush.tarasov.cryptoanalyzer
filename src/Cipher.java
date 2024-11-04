@@ -33,7 +33,7 @@ public class Cipher {
     public String decrypt(String encryptedText, int shift, int mode) {
         // Логика расшифровки
         switch (mode) {
-            case 1:
+            case 2:
                 int realShift = 0;
                 if (shift > alphabet.length) {
                     realShift = shift % alphabet.length;
@@ -57,7 +57,7 @@ public class Cipher {
                     newText += ch;
                 }
                 return newText;
-            case 2:
+            case 3:
                 break;
         }
         return null;

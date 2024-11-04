@@ -22,7 +22,7 @@ public class MainApp {
     private static List<String> decryptTextOfFile = new ArrayList<>(List.of());
     private static String answer = "";
     private static String pathToWrite = "";
-    private static Cipher cipher = new Cipher(ALPHABET);
+    private static final Cipher cipher = new Cipher(ALPHABET);
 
     public static void main(String[] args) {
         pathScanner.useDelimiter("Delimeter");
@@ -59,24 +59,24 @@ public class MainApp {
     private static void encryptFile(){
         selectPathToRead();
         selectKey();
-        process();
-        selectPathToWrite();
+        processEncrypt();
+        selectPathToWriteEncrypt();
     }
 
     private static void decryptFile(){
         selectPathToRead();
         selectKey();
-        process();
-        selectPathToWrite();
+        processDecrypt();
+        selectPathToWriteDecrypt();
     }
     private static void selectPathToRead(){
         while (!fileExists) {
-            System.out.println("Введите путь файла который хотите зашифровать");
+            System.out.println("Введите путь файла который хотите зашифровать/расшифровать");
             filename = pathScanner.nextLine();
             fileExists = Validator.isFileExists(filename);
         }
     }
-    private static void selectPathToWrite(){
+    private static void selectPathToWriteDecrypt(){
         System.out.println("Сохранить файл?");
         System.out.println("yes/no");
         answer = scanner.next();
@@ -86,20 +86,40 @@ public class MainApp {
             fileManager.writeFile(decryptTextOfFile,pathToWrite);
         }
     }
+    private static void selectPathToWriteEncrypt(){
+        System.out.println("Сохранить файл?");
+        System.out.println("yes/no");
+        answer = scanner.next();
+        if (answer.equals("yes")) {
+            System.out.println("Выберите директорию с именем нового файла");
+            pathToWrite = pathScanner.nextLine();
+            fileManager.writeFile(encryptTextOfFile,pathToWrite);
+        }
+    }
     private static void selectKey(){
         while (key<=0) {
             System.out.println("Введите ключ для шифрования/расшифровки файла");
             key = scanner.nextInt();
         }
     }
-    private static void process(){
+    private static void processEncrypt(){
         try {
             textOfFile = fileManager.readFile(filename);
         } catch (Exception e) {
             System.out.println("Неизвестная ошибка");
         }
         for(String textOfLine : textOfFile ){
-            encryptTextOfFile.add(cipher.encrypt(textOfLine, key));;
+            encryptTextOfFile.add(cipher.encrypt(textOfLine, key));
+        }
+    }
+    private static void processDecrypt(){
+        try {
+            textOfFile = fileManager.readFile(filename);
+        } catch (Exception e) {
+            System.out.println("Неизвестная ошибка");
+        }
+        for(String textOfLine : textOfFile ){
+            decryptTextOfFile.add(cipher.decrypt(textOfLine, key, mode));
         }
     }
 }
