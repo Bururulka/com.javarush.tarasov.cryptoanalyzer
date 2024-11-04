@@ -48,7 +48,7 @@ public class Cipher {
                     if (index >= 0) {
                         index = index - realShift;
                         if (index < 0) {
-                            index = textArray.length + index ;
+                            index = alphabet.length + index ;
                         }
                     }
                     textArray[i] = alphabet[index];
