@@ -5,16 +5,16 @@ import java.nio.file.*;
 import java.util.*;
 
 public class FileManager {
+    private Scanner pathScanner = new Scanner(System.in);
     public List<String> readFile(String filePath) throws IOException {
-        // Логика чтения файла
         Path path = Path.of(filePath);
         return Files.readAllLines(path);
     }
-    public void writeFile(List<String> content, String filePath) {
+    public void writeFile(List<String> content, String pathToWrite){
         // Логика записи файла
         try {
-            Files.createFile(Path.of(filePath));
-            Files.write(Path.of(filePath), content);
+            Files.createFile(Path.of(pathToWrite));
+            Files.write(Path.of(pathToWrite), content);
         }
         catch (IOException e) {
             System.out.println("Неизвестная ошибка");

@@ -3,7 +3,7 @@ package src;
 import java.nio.file.*;
 
 public class Validator {
-    public static boolean isFileExists(String filePath) {
+    public boolean isFileExists(String filePath) {
         boolean isExist = false;
         // Проверка существования файла
         if (filePath == null || filePath.isEmpty()) {
