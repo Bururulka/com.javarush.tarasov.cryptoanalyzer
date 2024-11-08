@@ -1,5 +1,6 @@
 package src;
 
+import java.io.File;
 import java.util.List;
 
 public class BrutForce  {
@@ -11,11 +12,12 @@ public class BrutForce  {
     public void unlock(List<String> text, String path) {
         Cipher cipher = new Cipher(alphabet);
         FileManager fileManager = new FileManager();
-        String pathWithFileName = "";
+        String pathWithFileName;
         for (int i = 0; i < alphabet.length; i++) {
+            pathWithFileName = "";
             List<String> newFile;
             newFile = cipher.crypt(text, i, 2);
-            pathWithFileName = pathWithFileName + "brutForse" + alphabet[i];
+            pathWithFileName = path + File.separator +"brutForse_" + i+".txt";
             fileManager.writeFile(newFile, pathWithFileName);
         }
     }

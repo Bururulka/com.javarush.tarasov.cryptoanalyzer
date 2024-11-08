@@ -16,7 +16,7 @@ public class FileManager {
             Files.write(Path.of(pathToWrite), content);
         }
         catch (IOException e) {
-            System.out.println("Неизвестная ошибка");
+            System.out.println("Неизвестная ошибка записи в файл");
         }
     }
     public void createNewDir(String pathToWrite){
@@ -24,7 +24,7 @@ public class FileManager {
             Files.createDirectory(Path.of(pathToWrite));
         }
         catch (IOException e) {
-            System.out.println("Неизвестная ошибка");
+            System.out.println("Неизвестная ошибка создания директории");
         }
     }
 }
