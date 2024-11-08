@@ -24,7 +24,6 @@ public class MainApp {
             System.out.println("1.Шифровать");
             System.out.println("2.Расшифровать с помощью ключа");
             System.out.println("3.Расшифровать при помощи Brut force");
-            System.out.println("4.Расшифровать при помощи статистического анализа текста");
             mode = scanner.nextInt();
             if (mode == 1 || mode == 2 || mode == 3 || mode == 4) {
                 go = true;
@@ -82,10 +81,5 @@ public class MainApp {
             BrutForce brutForce = new BrutForce(ALPHABET);
             brutForce.unlock(oldFile, pathToWriteAllFiles);
         }
-        if (mode == 4) {
-
-        }
-
     }
-
 }
