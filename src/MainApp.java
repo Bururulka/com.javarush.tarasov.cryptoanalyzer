@@ -13,6 +13,7 @@ public class MainApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Scanner pathScanner = new Scanner(System.in);
+        Validator validator = new Validator();
         int key = 0;
         String filename = "";
         boolean go = false;
@@ -33,15 +34,15 @@ public class MainApp {
 
         boolean fileExists = false;
         while (!fileExists) {
-            Validator validator = new Validator();
             System.out.println("Введите путь файла который хотите зашифровать/расшифровать");
             filename = pathScanner.nextLine();
             fileExists = validator.isFileExists(filename);
         }
-
-        while (key <= 0) {
-            System.out.println("Введите ключ для шифрования/расшифровки файла");
-            key = scanner.nextInt();
+        if (mode == 1 || mode == 2) {
+            while (key <= 0) {
+                System.out.println("Введите ключ для шифрования/расшифровки файла");
+                key = scanner.nextInt();
+            }
         }
 
         FileManager fileManager = new FileManager();
@@ -51,6 +52,7 @@ public class MainApp {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         if (mode == 1 || mode == 2) {
             Cipher cipher = new Cipher(ALPHABET);
             List<String> newFile;
@@ -58,6 +60,15 @@ public class MainApp {
             System.out.println("Выберите директорию с именем нового файла");
             String pathToWrite = pathScanner.nextLine();
             fileManager.writeFile(newFile, pathToWrite);
+        }
+        if (mode == 3) {
+            System.out.println("Выберите директорию, куда складывать варианты расшифровки");
+            String pathToWriteAllFiles = pathScanner.nextLine();
+            BrutForce brutForce = new BrutForce(ALPHABET);
+            brutForce.unlock(oldFile, pathToWriteAllFiles);
+        }
+        if (mode == 4) {
+
         }
 
     }
