@@ -12,6 +12,7 @@ public class MainApp {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Scanner scannerString = new Scanner(System.in);
         Scanner pathScanner = new Scanner(System.in);
         Validator validator = new Validator();
         int key = 0;
@@ -71,7 +72,7 @@ public class MainApp {
                 isValid = validator.isDirExists(pathToWriteAllFiles);
                 if (!isValid){
                     System.out.println("Такой директории не существует. Хотите создать? yes/no");
-                    answer = scanner.nextLine();
+                    answer = scannerString.nextLine();
                     if (answer.equalsIgnoreCase("yes")){
                         fileManager.createNewDir(pathToWriteAllFiles);
                         isValid = true;
