@@ -17,6 +17,15 @@ public class Validator {
                     System.out.println("Введите действительный путь файла");
                 }
             }
+        }
+        return isExist;
+    }
+    public boolean isDirExists(String filePath) {
+        boolean isExist = false;
+        if (filePath == null || filePath.isEmpty()) {
+            isExist = false;
+        } else {
+            Path path = Paths.get(filePath);
             if (Files.isDirectory(path)) {
                 if (Files.exists(path)) {
                     isExist = true;
@@ -29,3 +38,5 @@ public class Validator {
     }
 
 }
+
+

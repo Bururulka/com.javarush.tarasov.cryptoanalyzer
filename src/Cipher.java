@@ -12,7 +12,7 @@ public class Cipher {
     }
 
     public List<String> crypt(List<String> text, int shift, int mode) {
-        // Логика расшифровки
+        // Логика шифровки/расшифровки
         List<String> newText = new ArrayList<>();
             if (mode == 1 || mode == 2) {
                 int realShift = 0;

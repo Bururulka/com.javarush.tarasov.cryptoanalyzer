@@ -62,8 +62,22 @@ public class MainApp {
             fileManager.writeFile(newFile, pathToWrite);
         }
         if (mode == 3) {
-            System.out.println("Выберите директорию, куда складывать варианты расшифровки");
-            String pathToWriteAllFiles = pathScanner.nextLine();
+            boolean isValid = false;
+            String pathToWriteAllFiles = "";
+            String answer = "";
+            while (!isValid) {
+                System.out.println("Выберите директорию, куда складывать варианты расшифровки");
+                pathToWriteAllFiles = pathScanner.nextLine();
+                isValid = validator.isDirExists(pathToWriteAllFiles);
+                if (!isValid){
+                    System.out.println("Такой директории не существует. Хотите создать? yes/no");
+                    answer = scanner.nextLine();
+                    if (answer.equalsIgnoreCase("yes")){
+                        fileManager.createNewDir(pathToWriteAllFiles);
+                        isValid = true;
+                    }
+                }
+            }
             BrutForce brutForce = new BrutForce(ALPHABET);
             brutForce.unlock(oldFile, pathToWriteAllFiles);
         }

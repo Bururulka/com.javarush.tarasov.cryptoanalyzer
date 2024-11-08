@@ -11,10 +11,12 @@ public class BrutForce  {
     public void unlock(List<String> text, String path) {
         Cipher cipher = new Cipher(alphabet);
         FileManager fileManager = new FileManager();
+        String pathWithFileName = "";
         for (int i = 0; i < alphabet.length; i++) {
             List<String> newFile;
             newFile = cipher.crypt(text, i, 2);
-            fileManager.writeFile(newFile, path);
+            pathWithFileName = pathWithFileName + "brutForse" + alphabet[i];
+            fileManager.writeFile(newFile, pathWithFileName);
         }
     }
 }
